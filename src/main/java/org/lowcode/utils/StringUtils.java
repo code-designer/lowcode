@@ -12,59 +12,59 @@ import java.io.InputStreamReader;
 public class StringUtils {
 	
 	/**
-	 * Check whether a string is null or empty
+	 * This method checks whether a string is null or empty
 	 * @param str
 	 * @return boolean, true if it's valid
 	 */
-	public static boolean isValide(String str) {
+	public static boolean isValid(String str) {
 		if (str == null)
 			return false;
 		return !str.trim().isEmpty();
 	}
 	
 	/**
-	 * check whether a string is digit 
+	 * this method checks whether a string is digit 
 	 * @param str is a string
 	 * @return boolean, true if it's a digit
 	 */
 	public static boolean isDigit(String str) {
-		if (!isValide(str))
+		if (!isValid(str))
 			return false;
 		return str.matches("^[0-9]+((\\.)[0-9]+)?$");
 	}
 	
 	/**
-	 * Check whether a string is an email
+	 * this method checks whether a string is an email
 	 * @param str is a string
 	 * @return boolean, true if it's an email
 	 */
 	public static boolean isEmail(String str) {
-		if( !isValide(str))
+		if( !isValid(str))
 			return false;
 		return str.matches("^[a-z]{2,}+([-._]?[a-z0-9]+)*@[a-z0-9]+(\\.[a-z]{2,5})+$");
 	}
 	
 	/**
-	 * Capitalize the first printable letter without accent
+	 * this method capitalizes the first printable letter without accent
 	 * @param str is a string
 	 * @return String that the first letter is capitalized
 	 * @throws NullPointerException if the given string is not valid
 	 */
 	public static String capitalize (String str) throws NullPointerException {
-		if(!isValide(str))
+		if(!isValid(str))
 			throw new NullPointerException("Enter a valid string");
 		
 		return str.trim().substring(0,1).toUpperCase() + str.trim().substring(1);
 	}
 	
 	/**
-	 * Another way to capitalize the first printable letter without accent
+	 * This method is another way to capitalize the first printable letter without accent
 	 * @param str is a string
 	 * @return String that the first letter is capitalized
 	 * @throws NullPointerException if the given string is not valid
 	 */
 	public static String toCapitalize(String str) throws NullPointerException {
-		if(!isValide(str))
+		if(!isValid(str))
 			throw new NullPointerException("Enter a valid string");
 		
 		char[] letters = str.toCharArray();
@@ -81,13 +81,13 @@ public class StringUtils {
 	}
 	
 	/**
-	 * Capitalizing each word's first letter of a string
+	 * this method capitalize each word's first letter of a string
 	 * @param str is a string
 	 * @return String capitalized
 	 * @throws NullPointerException if the given string is not valid
 	 */
 	public static String capitalizeAll (String str) throws NullPointerException {
-		if(!isValide(str))
+		if(!isValid(str))
 			throw new NullPointerException("Enter a valid string");
 		
 		String[] words = str.split(" ");
@@ -95,7 +95,7 @@ public class StringUtils {
 		StringBuilder sb = new StringBuilder();
 		
 		for (String word : words) {
-			if (isValide(word))
+			if (isValid(word))
 				sb.append(capitalize(word)).append(" ");
 		}
 		return sb.toString().trim();
@@ -109,7 +109,7 @@ public class StringUtils {
 	 * @throws NullPointerException if the given string is not valid
 	 */
 	public static String toCapitalizeAll (String str) throws NullPointerException {
-		if(!isValide(str))
+		if(!isValid(str))
 			throw new NullPointerException("Enter a valid string");
 		
 		char[] letters = str.toCharArray();
@@ -133,13 +133,13 @@ public class StringUtils {
 	}
 	
 	/**
-	 * Shuffling characters of a string
+	 * This method shuffles characters of a string
 	 * @param str
 	 * @return string, shuffled string
 	 * @throws NullPointerException, if the string is not valid
 	 */
 	public static String shuffle (String str) throws NullPointerException {
-		if(!isValide(str))
+		if(!isValid(str))
 			throw new NullPointerException("Enter a valid string");
 		
 		char[] letters = str.toCharArray();
@@ -157,6 +157,26 @@ public class StringUtils {
 		return new String(letters);
 	}
 	
+	/**
+	 * This method reverses a string
+	 * @param str
+	 * @throws NullPointerException, if the string is not valid
+	 */
+	public static String reverse (String str) throws NullPointerException {
+		if(!isValid(str))
+			throw new NullPointerException("Enter a valid string");
+		
+		char[] letters = str.trim().toCharArray();
+		int count = letters.length;
+		char temp;
+		for (int i = 0; i < count/2; i++) {
+			temp = letters[count - i - 1];
+			letters[count - i - 1] = letters[i];
+			letters[i] = temp;
+		}
+		return new String(letters);
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("Entrez un text");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -166,11 +186,14 @@ public class StringUtils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Is valide : " + StringUtils.isValide(line));
+		System.out.println("Is valide : " + StringUtils.isValid(line));
 		System.out.println("Is Digit : " + StringUtils.isDigit(line));
 		System.out.println("Is Email : " + StringUtils.isEmail(line));
 		System.out.println("capitalize :" + StringUtils.capitalize(line));
 		System.out.println("capitalizeAll : " + StringUtils.capitalizeAll(line));
 		System.out.println("shuffle : " + StringUtils.shuffle(line));
+		System.out.println("reverse : " + StringUtils.reverse(line));
+		
+		
 	}
 }

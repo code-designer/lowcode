@@ -7,18 +7,18 @@ import org.junit.jupiter.api.Test;
 class StringUtilsTest {
 
 	@Test
-	public void testIsValide() {
+	public void testIsValid() {
 		String str = "a common string";
-		assertTrue(StringUtils.isValide(str), "la chaine passee est bien valide");
+		assertTrue(StringUtils.isValid(str), "la chaine passee est bien valide");
 		
 		str = "   ";
-		assertFalse(StringUtils.isValide(str), "la chaine passe est invalide");
-		
-		str = null;
-		assertFalse(StringUtils.isValide(str), "la chaine passe est invalide");
-		
+		assertFalse(StringUtils.isValid(str), "la chaine passe est invalide");
+				
 		str = "12";
-		assertTrue(StringUtils.isValide(str), "la chaine passee est bien valide");
+		assertTrue(StringUtils.isValid(str), "la chaine passee est bien valide");
+		
+		String str1 = null;
+		assertFalse(StringUtils.isValid(str1), "La chaine passee est invalide");
 	}
 	
 	@Test
@@ -88,6 +88,10 @@ class StringUtilsTest {
 		assertEquals("Hello amigo", StringUtils.capitalize(str), "hello amigo non capitalisé");
 		str = "Hello3";
 		assertEquals("Hello3", StringUtils.capitalize(str), "Hello3 non capitalisé");
+		
+		assertThrows(NullPointerException.class, ()->{
+			StringUtils.capitalize(null);
+			});
 	}
 	
 	@Test
@@ -100,6 +104,10 @@ class StringUtilsTest {
 		assertEquals("Hello amigo", StringUtils.toCapitalize(str), "hello amigo non capitalisé");
 		str = "Hello3";
 		assertEquals("Hello3", StringUtils.toCapitalize(str), "Hello3 non capitalisé");
+		
+		assertThrows(NullPointerException.class, ()->{
+			StringUtils.toCapitalize(null);
+			});
 	}
 	
 	@Test 
@@ -115,6 +123,10 @@ class StringUtilsTest {
 		
 		str = "That Is a good day";
 		assertEquals("That Is A Good Day", StringUtils.capitalizeAll(str), "That Is a good day non capitalisé");
+		
+		assertThrows(NullPointerException.class, ()->{
+			StringUtils.capitalizeAll(null);
+			});
 	}
 	
 	@Test 
@@ -130,6 +142,10 @@ class StringUtilsTest {
 		
 		str = "That Is  a good day";
 		assertEquals("That Is  A Good Day", StringUtils.toCapitalizeAll(str), "That Is a good day non capitalisé");
+		
+		assertThrows(NullPointerException.class, ()->{
+			StringUtils.toCapitalizeAll(null);
+			});
 	}
 	
 	@Test
@@ -142,6 +158,16 @@ class StringUtilsTest {
 		
 		str = "greatness";
 		assertNotEquals("greatness", StringUtils.shuffle(str), "non capitalisé");
+	}
+	
+	@Test
+	void testReverse() {
+		String str = "abcdefghij";
+		assertEquals("jihgfedcba", StringUtils.reverse(str), "bad reverse");
+		
+		str = "ressasser";
+		assertEquals(str, StringUtils.reverse(str), "bad reverse");
+		
 	}
 
 }
