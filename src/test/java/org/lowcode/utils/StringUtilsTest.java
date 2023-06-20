@@ -59,6 +59,9 @@ class StringUtilsTest {
 		str = "my.java-script@web.net";
 		assertTrue(StringUtils.isEmail(str), "my.java-script@web.net est un mail valide");
 		
+		str = "my.java-script@3hyper-web.js.net";
+		assertTrue(StringUtils.isEmail(str), "my.java-script@3hyper-web.js.net est un mail valide");
+		
 		str = ".code@java.net";
 		assertFalse(StringUtils.isEmail(str), ".code@java.net n'est pas valide");
 		

@@ -1,11 +1,9 @@
 package org.lowcode.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
@@ -18,6 +16,11 @@ class DateUtilsTest {
 	void testToLocalDate() {
 		String date = "12-05-2021", pattern = "dd-MM-yyyy";
 		LocalDate lc = LocalDate.parse(date, DateTimeFormatter.ofPattern(pattern));
+		assertEquals(lc, DateUtils.toLocalDate(date, pattern));
+		
+		date = "12/05/2021"; 
+		pattern = "dd/MM/yyyy";
+		lc = LocalDate.parse(date, DateTimeFormatter.ofPattern(pattern));
 		assertEquals(lc, DateUtils.toLocalDate(date, pattern));
 		
 		String d = null, p = "dd-MM-yyyy";
@@ -37,6 +40,11 @@ class DateUtilsTest {
 		String date = "12/05/2021", pattern = "dd/MM/yyyy";
 		LocalDate lc = LocalDate.parse(date, DateTimeFormatter.ofPattern(pattern, Locale.FRANCE));
 		assertEquals(lc, DateUtils.toLocalDate(date, pattern));
+		
+		date = "12/05/2021"; 
+		pattern = "dd/MM/yyyy";
+		lc = LocalDate.parse(date, DateTimeFormatter.ofPattern(pattern));
+		assertEquals(lc, DateUtils.toLocalDate(date, pattern, Locale.FRANCE));
 				
 		String d = null, p = "dd-MM-yyyy";
 		assertThrows(NullPointerException.class, ()->{

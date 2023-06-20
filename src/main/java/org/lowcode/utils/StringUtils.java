@@ -41,7 +41,7 @@ public class StringUtils {
 	public static boolean isEmail(String str) {
 		if( !isValid(str))
 			return false;
-		return str.matches("^[a-z]{2,}+([-._]?[a-z0-9]+)*@[a-z0-9]+(\\.[a-z]{2,5})+$");
+		return str.matches("^[a-z]+([-._]?[a-z0-9]+)*@[a-z0-9]+([-.]?[a-z0-9]+)*(\\.[a-z]{2,5})+$");
 	}
 	
 	/**
@@ -178,6 +178,7 @@ public class StringUtils {
 	}
 	
 	public static void main(String[] args) {
+		
 		System.out.println("Entrez un text");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		String line = "";
@@ -193,7 +194,7 @@ public class StringUtils {
 		System.out.println("capitalizeAll : " + StringUtils.capitalizeAll(line));
 		System.out.println("shuffle : " + StringUtils.shuffle(line));
 		System.out.println("reverse : " + StringUtils.reverse(line));
-		
+				
 		
 	}
 }
