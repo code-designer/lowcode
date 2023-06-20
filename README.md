@@ -2,13 +2,13 @@
 These are simple, easy and useful functions that we can use every time in most of our projects.
 They don't need configurations or others.
 There are severals methods in differents classes
-- StringUtils class
+- StringUtils class :
   isValid, isDigit, isEmail, capitalize, capitalizeAll, shuffle, reverse
-- DateUtils class
+- DateUtils class :
 toLocalDate, daysLeft and formatPeriod
-- FileUtils
+- FileUtils class :
 getExtension and merge
-- ImageUtils
+- ImageUtils class :
 monochrome (in progress)
 
 Enjoy it
