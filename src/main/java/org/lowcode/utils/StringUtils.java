@@ -194,7 +194,6 @@ public class StringUtils {
 		System.out.println("capitalizeAll : " + StringUtils.capitalizeAll(line));
 		System.out.println("shuffle : " + StringUtils.shuffle(line));
 		System.out.println("reverse : " + StringUtils.reverse(line));
-				
 		
 	}
 }

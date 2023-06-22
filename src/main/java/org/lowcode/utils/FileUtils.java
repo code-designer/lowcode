@@ -1,10 +1,12 @@
 package org.lowcode.utils;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -56,9 +58,6 @@ public class FileUtils {
 		
 		//To store all sentences of the first file read with BufferedInputStream
 		List<String> content = new LinkedList<>();
-		
-		//To determine whether there is sentence which common to the files
-		boolean intersection = false;
 		
 		//Buffer for reading bytes
 		byte[] buffer = new byte[1024];
@@ -114,12 +113,17 @@ public class FileUtils {
 						++i;
 						//Store phrases for later insertion if they're not found in file 1
 						if (i == content.size()) {
+							//System.out.println(line);
 							store.add(line.toString());
 							storeEmpty = false;
-							intersection = true;
 						}
 						
 					}
+					if (start >= content.size()) {
+						content.add(line.toString());
+						start++;
+					}
+					
 					line.setLength(0);
 				}
 			}
@@ -127,15 +131,75 @@ public class FileUtils {
 		bis.close();
 		
 		//If the two files are totally differents, there is no merge.
-		if (!intersection) {
-			return null;
-		}
+//		if (!intersection) {
+//			return null;
+//		}
+		
 		
 		//Create a file from a list content
 		String filename = path.getParent() + "\\merge.txt";
 		BufferedWriter bw = new BufferedWriter(new FileWriter(filename));
 		for (String str : content) {
 			bw.write(str + ".");
+		}
+		bw.close();
+		return Paths.get(filename);
+	}
+	
+	public static Path mergeByLine(String s, String s2) throws IOException {
+		
+		if (s == null || s2 == null)
+			throw new NullPointerException();
+		
+		//Convert string into Path objects
+		Path path = Paths.get(s), path2 = Paths.get(s2);
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path.toFile())));
+		List<String> content = new LinkedList<String>();
+		
+		String line;
+		while((line = br.readLine()) != null) {
+			content.add(line);
+		}
+		br.close();
+		br = new BufferedReader(new InputStreamReader(new FileInputStream(path2.toFile())));
+		int start = 0, i = 0;
+		List<String> store = new ArrayList<>();
+		boolean storeEmpty = true;
+		
+		while ((line = br.readLine()) != null) {
+			i = start;
+			while (i < content.size()) {
+				if (content.get(i).equals(line)) {
+					if(!storeEmpty) {
+						for(String str : store)
+							content.add(i++, str);
+						store.clear();
+						storeEmpty = true;
+					}
+					start = ++i;
+					break;
+				}
+				i++;
+				if (i == content.size()) {
+					store.add(line);
+					storeEmpty = false;
+				}
+			}
+			if (start > content.size()) {
+				content.add(line);
+				start++;
+			}
+
+		}
+		br.close();
+		
+		
+		//Create a file from a list content
+		String filename = path.getParent() + "\\merge.txt";
+		BufferedWriter bw = new BufferedWriter(new FileWriter(filename));
+		for (String str : content) {
+			bw.write(str + "\t\n");
 		}
 		bw.close();
 		return Paths.get(filename);
