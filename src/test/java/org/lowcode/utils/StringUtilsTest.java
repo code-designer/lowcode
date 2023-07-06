@@ -43,6 +43,27 @@ class StringUtilsTest {
 	}
 	
 	@Test
+	void testIsDigit2() {
+		String str = "12";
+		assertTrue(StringUtils.isDigit2(str), "12 est un nombre");
+		
+		str = "23a";
+		assertFalse(StringUtils.isDigit2(str), "23a n'est pas un nombre");
+		
+		str = "23 4";
+		assertFalse(StringUtils.isDigit2(str), "23 4 n'est pas un nombre");
+		
+		str = "56.31";
+		assertTrue(StringUtils.isDigit2(str), "56.31 est un nombre");
+		
+		str = ".890";
+		assertFalse(StringUtils.isDigit2(str), ".890 n'est pas un nombre");
+		
+		str = "81.2.34";
+		assertFalse(StringUtils.isDigit2(str), "81.2.34 n'est pas un nombre");
+	}
+	
+	@Test
 	void testIsEmail() {
 		String str = "code@java.net";
 		assertTrue(StringUtils.isEmail(str), "code@java.net est un mail valide");

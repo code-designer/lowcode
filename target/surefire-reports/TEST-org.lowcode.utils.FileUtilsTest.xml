@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="org.lowcode.utils.StringUtilsTest" time="0.054" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="org.lowcode.utils.FileUtilsTest" time="0.011" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -62,14 +62,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="testCapitalizeAll" classname="org.lowcode.utils.StringUtilsTest" time="0.001"/>
-  <testcase name="testToCapitalizeAll" classname="org.lowcode.utils.StringUtilsTest" time="0"/>
-  <testcase name="testIsDigit2" classname="org.lowcode.utils.StringUtilsTest" time="0.002"/>
-  <testcase name="testReverse" classname="org.lowcode.utils.StringUtilsTest" time="0.002"/>
-  <testcase name="testToCapitalize" classname="org.lowcode.utils.StringUtilsTest" time="0.001"/>
-  <testcase name="testIsDigit" classname="org.lowcode.utils.StringUtilsTest" time="0.002"/>
-  <testcase name="testIsEmail" classname="org.lowcode.utils.StringUtilsTest" time="0.027"/>
-  <testcase name="testShuffle" classname="org.lowcode.utils.StringUtilsTest" time="0.005"/>
-  <testcase name="testIsValid" classname="org.lowcode.utils.StringUtilsTest" time="0.001"/>
-  <testcase name="testCapitalize" classname="org.lowcode.utils.StringUtilsTest" time="0.001"/>
+  <testcase name="testGetExtention" classname="org.lowcode.utils.FileUtilsTest" time="0.008"/>
 </testsuite>

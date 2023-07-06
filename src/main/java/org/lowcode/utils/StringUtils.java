@@ -17,9 +17,7 @@ public class StringUtils {
 	 * @return boolean, true if it's valid
 	 */
 	public static boolean isValid(String str) {
-		if (str == null)
-			return false;
-		return !str.trim().isEmpty();
+		return str !=  null && !str.trim().isEmpty();
 	}
 	
 	/**
@@ -31,6 +29,22 @@ public class StringUtils {
 		if (!isValid(str))
 			return false;
 		return str.matches("^[0-9]+((\\.)[0-9]+)?$");
+	}
+	
+	public static boolean isDigit2(String str) {
+		if (!isValid(str))
+			return false;
+		byte point = 1;
+		char[] chars = str.toCharArray();
+		for (int i = 0; i < chars.length; i++) {
+			if (chars[i] == '.' && i != 0 && i != chars.length - 1) {
+				point--;
+				continue;
+			}
+			if (!Character.isDigit(chars[i]) || point < 0 )
+				return false;
+		}
+		return true;
 	}
 	
 	/**
@@ -188,7 +202,7 @@ public class StringUtils {
 			e.printStackTrace();
 		}
 		System.out.println("Is valide : " + StringUtils.isValid(line));
-		System.out.println("Is Digit : " + StringUtils.isDigit(line));
+		System.out.println("Is Digit : " + StringUtils.isDigit2(line));
 		System.out.println("Is Email : " + StringUtils.isEmail(line));
 		System.out.println("capitalize :" + StringUtils.capitalize(line));
 		System.out.println("capitalizeAll : " + StringUtils.capitalizeAll(line));

@@ -1,1 +1,4 @@
+org\lowcode\utils\ImageUtilsTest.class
+org\lowcode\utils\DateUtilsTest.class
+org\lowcode\utils\FileUtilsTest.class
 org\lowcode\utils\StringUtilsTest.class
